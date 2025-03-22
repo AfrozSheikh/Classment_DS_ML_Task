@@ -1,0 +1,87 @@
+Recommendation Engine Documentation
+
+1. Approach/Methodology
+The goal of this project is to build a simple recommendation engine that, given a job role, recommends the three closest roles based on the similarity of required skills. The approach follows these steps:
+
+Data Preparation:
+A dataset of job roles and their required skills was created. Each role is associated with a set of skills (e.g., "Data Scientist" → {"Python", "Statistics", "Machine Learning", "Data Visualization"}).
+
+Skill Encoding:
+The skills were converted into a binary matrix using MultiLabelBinarizer from scikit-learn.
+
+This matrix represents the presence (1) or absence (0) of each skill for every role.
+
+Similarity Calculation:
+Cosine Similarity was used to compute the similarity between roles based on their skill vectors.
+
+Cosine similarity measures the cosine of the angle between two vectors, providing a value between 0 and 1, where 1 indicates identical vectors.
+
+Recommendation Function:
+A function, get_top_recommendations_cosine, was implemented to:
+
+Accept an input role and the number of recommendations (top_n).
+
+Handle case-insensitive input and validate the role.
+
+Compute similarity scores between the input role and all other roles.
+
+Return the top N most similar roles based on similarity scores.
+
+Testing:
+The function was tested with various roles, including edge cases such as:
+
+Invalid role inputs.
+
+Different values of top_n.
+
+2. Why Cosine Similarity?
+Cosine similarity was chosen for the following reasons:
+
+✅ Effectiveness for Binary Data:
+
+The skills are represented as binary vectors (1 for presence, 0 for absence). Cosine similarity works well with such sparse, high-dimensional data.
+
+✅ Focus on Skill Overlap:
+
+It measures the orientation (angle) between vectors rather than their magnitude. This makes it ideal for comparing roles based on shared skills, regardless of the total number of skills.
+
+✅ Interpretability:
+
+The similarity scores range from 0 to 1, where 1 indicates identical skill sets and 0 indicates no overlap. This makes the results easy to understand.
+
+✅ Widely Used in Recommendation Systems:
+
+Cosine similarity is a standard technique in recommendation systems, text analysis, and information retrieval, making it a reliable choice for this task.
+
+3. Example Output
+For the input role "ML Engineer", the output might look like this:
+
+python
+Copy
+Edit
+Cosine Similarity scores for ML Engineer: {
+    'Data Scientist': 0.75,
+    'Data Analyst': 0.5,
+    'Data Engineer': 0.5,
+    'AI Researcher': 0.75,
+    'Business Analyst': 0.0,
+    'NLP Engineer': 0.75
+}
+Recommended roles:
+
+python
+Copy
+Edit
+[('AI Researcher', 0.75), ('Data Scientist', 0.75), ('NLP Engineer', 0.75)]
+4. Conclusion
+This recommendation engine provides a simple yet effective way to identify similar job roles based on shared skills. By leveraging cosine similarity and a binary skill representation, the system ensures accurate and interpretable recommendations.
+
+Future Enhancements:
+
+Assign weights to skills based on industry relevance.
+
+Allow users to input a custom skill set and get recommended job roles.
+
+Experiment with other similarity measures like Jaccard Similarity.
+
+Develop a web-based UI for better accessibility.
