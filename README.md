@@ -22,7 +22,7 @@ Scikit-learn
 Installation & Setup
 Clone this repository:
 
-git clone https://github.com/your-repo/job-role-recommendation.git
+git clone https://github.com/AfrozSheikh/Classment_DS_ML_Task.git
 cd job-role-recommendation
 Install dependencies:
 pip install pandas scikit-learn
